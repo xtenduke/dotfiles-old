@@ -36,7 +36,6 @@ set smartcase                   " ... but not when search pattern contains upper
 set autoindent
 set tabstop=4 shiftwidth=4 expandtab
 set gdefault            " Use 'g' flag by default with :s/foo/bar/.
-set magic               " Use 'magic' patterns (extended regular expressions).
 set hidden              " Fix for opening files with unsaved buffer
 
 " typescript-vim fix
@@ -46,13 +45,13 @@ autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
-"Nerdtree switch tabs
-map  <C-l> :tabn<CR>
-map  <C-h> :tabp<CR>
-map  <C-n> :tabnew<CR>
-
 "FZF mapping
-noremap <silent> <C-p> :FZF -m<CR>
+noremap <silent> <C-o> :FZF -m<CR>
+" FZF ignore gitignored files (requires silversearcher-ag)
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+
+" Ag mapping
+noremap <silent> <C-f> :Ag<CR>
 
 " Kill vim if nerdtree is the only thing open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -75,18 +74,6 @@ let g:session_autosave = 'yes'
 let g:session_autoload = 'yes'
 let g:session_default_to_last = 1
 
-" set cursorcolumn
-nmap <Space> <PageDown>
-vmap <BS> x
-
-" cd ~/.config/nvim/spell
-" wget http://ftp.vim.org/vim/runtime/spell/pt.utf-8.spl
-" set spell spelllang=pt_pt
-" zg to add word to word list
-" zw to reverse
-" zug to remove word from word list
-" z= to get list of possibilities
-" set spellfile=~/.config/nvim/spellfile.add
 set nospell
 
 " Plugins here
@@ -97,7 +84,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'Chiel92/vim-autoformat'
 Plug 'scrooloose/nerdtree'
 Plug 'terryma/vim-multiple-cursors'
-Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'vim-syntastic/syntastic'
 Plug 'leafgarland/typescript-vim'
@@ -150,14 +137,11 @@ let NERDTreeIgnore = ['_site']
 
 " Buffer handling
 nmap L :let &number=1-&number<CR>
-nmap <leader>l :bnext<CR>
+nmap <c-l> :bnext<CR>
 nmap <c-h> :bprevious<CR>
 nmap <leader>bq :bp <BAR> bd #<CR>
 nmap <leader>bl :ls<CR>
 nmap <leader>0 :set invnumber<CR>
-" map :q to byffer delete
-" http://stackoverflow.com/questions/7513380/vim-change-x-function-to-delete-buffer-instead-of-save-quit
-cnoreabbrev <expr> q getcmdtype() == ":" && (getcmdline() == 'q' && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) > 1) ? 'bd' : 'q'
 
 " Fucking COC config
 " JFC this is huge

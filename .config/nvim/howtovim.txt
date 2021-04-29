@@ -1,0 +1,35 @@
+VIM
+
+leader: z
+
+NerdTree:
+https://cheatography.com/stepk/cheat-sheets/vim-nerdtree/
+ - toggle: <C-n>
+ - tab-prev: <C-h>
+ - tab-next: <C-l>
+ - Open in split (horiz): i
+ - Open in split (vert): s
+ - open in new tab: t
+ - close split
+ 
+Searching
+ - Search files <C-o> 
+ - Search contents <C-f>
+ - Close <ESC>
+ - cursor up/down <C-j/k>
+ 
+Class navigation etc (coc)
+jump to definition: gd
+jump to type definition: gy
+jump to implementation: gi
+jump to references: gr
+ 
+ 
+Buffers
+ - buffer-previous: <C-h>
+ - buffer-next: <C-l>
+ - up split: <C-w> k
+ - down split: <C-w> j
+ - close buffer: <leader> bq
+ - show buffer dir: <leader> bl
+ - show line numbers (set nu): <leader> 0
