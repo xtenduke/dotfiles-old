@@ -89,6 +89,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'vim-syntastic/syntastic'
 Plug 'leafgarland/typescript-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
@@ -116,7 +117,7 @@ let g:airline_left_alt_sep = '|'
 let g:airline_right_sep = ' '
 let g:airline_right_alt_sep = '|'
 let g:airline_powerline_fonts=1
-let g:airline_theme='molokai'
+let g:airline_theme='google_dark'
 
 " Multicursor
 let g:multi_cursor_use_default_mapping=0
