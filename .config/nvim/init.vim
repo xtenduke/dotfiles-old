@@ -20,6 +20,8 @@ set nostartofline       " Do not jump to first character with page commands.
 set noerrorbells                " No beeps
 set backspace=indent,eol,start  " Makes backspace key more powerful.
 set showcmd                     " Show me what I'm typing
+set tabstop=4 "4 space tabls
+set shiftwidth=4
 set showmode                    " Show current mode.
 set noswapfile                  " Don't use swapfile
 set nobackup            	" Don't create annoying backup files
@@ -33,12 +35,8 @@ set incsearch                   " Shows the match while typing
 set hlsearch                    " Highlight found searches
 set ignorecase                  " Search case insensitive...
 set smartcase                   " ... but not when search pattern contains upper case characters
-set tabstop=2
 filetype plugin indent on " On pressing tab, insert 2 spaces
 set expandtab " show existing tab with 2 spaces width
-set tabstop=2
-set softtabstop=2 " when indenting with '>', use 2 spaces width
-set shiftwidth=2
 set gdefault            " Use 'g' flag by default with :s/foo/bar/.
 set hidden              " Fix for opening files with unsaved buffer
 
@@ -55,7 +53,7 @@ noremap <silent> <C-o> :FZF -m<CR>
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 " Ag mapping
-noremap <silent> <C-f> :Ag<CR>
+noremap <silent> <C-f> :Rg<CR>
 
 " Kill vim if nerdtree is the only thing open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -254,12 +252,12 @@ omap ac <Plug>(coc-classobj-a)
 
 " Remap <C-f> and <C-b> for scroll float windows/popups.
 if has('nvim-0.4.0') || has('patch-8.2.0750')
-  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  nnoremap <silent><nowait><expr> <C-j> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-j>"
+  nnoremap <silent><nowait><expr> <C-k> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-k>"
+  inoremap <silent><nowait><expr> <C-k> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
   inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  vnoremap <silent><nowait><expr> <C-j> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-j>"
+  vnoremap <silent><nowait><expr> <C-k> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-k>"
 endif
 
 " Use CTRL-S for selections ranges.
@@ -307,3 +305,6 @@ nmap <silent> <leader>T :TestFile<CR>
 nmap <silent> <leader>a :TestSuite<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
+
+" Move to normal mode to scroll tests
+tmap <C-o> <C-\><C-n>
